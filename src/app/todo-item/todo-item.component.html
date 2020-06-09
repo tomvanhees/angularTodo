@@ -1,0 +1,8 @@
+<li class="list-group-item">
+  <div class="d-flex justify-content-between">
+      <div [class.item-completed]="todoItem.isDone === true">
+      {{todoItem.getDescription()}}
+  </div>
+    <div><button class="btn btn-sm  btn-danger" (click)="removeItem(todoItem)">verwijderen</button></div>
+  </div>
+</li>

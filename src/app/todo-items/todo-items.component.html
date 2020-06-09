@@ -1,0 +1,5 @@
+<ul class="list-group">
+  <app-todo-item *ngFor="let todoItem of todoService.todoItems" [todoItem]="todoItem" (click)="toggleCompleted(todoItem)" (deleted)="deleteItem($event)"></app-todo-item>
+</ul>
+
+
