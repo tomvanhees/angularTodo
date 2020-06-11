@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TodoService} from '../todo.service';
+import {TodoService} from '../services/todo.service';
 import {TodoItem} from '../../assets/types/todo-item';
 import {TodoItemModel} from '../../assets/models/TodoItemModel';
 
@@ -26,7 +26,6 @@ export class AddTodoItemComponent implements OnInit {
   }
 
   update(value: string) {
-    console.log(value);
     this.newTodo.description = value;
   }
 
