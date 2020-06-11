@@ -25,10 +25,6 @@ export class AddTodoItemComponent implements OnInit {
     this.newTodo = new TodoItemModel();
   }
 
-  update(value: string) {
-    this.newTodo.description = value;
-  }
-
   addTodoItem() {
     this.todoService.addTodoItem(this.newTodo);
     this.createNewTodo();

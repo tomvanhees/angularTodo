@@ -18,27 +18,24 @@ export class DatabaseService {
   }
 
   get(): any {
-    return this.database.allDocs({include_docs: true,
-      attachments: true});
+    return this.database.allDocs({
+      include_docs: true,
+      attachments: true
+    });
   }
 
   fetch(id: string): any {
     return;
   }
 
-  post(document: TodoItem): any {
+  async post(document: TodoItem): Promise<any> {
     return this.database
-      .post(document)
-      .then(response => {
-        return response;
-      }).catch(error => {
-        console.log(error);
-        return error;
-      });
+      .post(document);
   }
 
-  delete(document: TodoItem){
-    this.database.remove(document);
+  async delete(document: TodoItem): Promise<any> {
+    console.log('before delete');
+    return this.database.remove(document);
   }
 
 }

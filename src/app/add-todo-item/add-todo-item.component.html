@@ -3,10 +3,10 @@
     <div class="card-body">
       <div class="form-group">
         <label for="">Omschrijving</label>
-        <input #newTodo  type="text" class="form-control" (keyup)="update(newTodo.value)" >
+        <input type="text" class="form-control" [(ngModel)]="newTodo.description" >
       </div>
       <div class="form-group">
-        <button class="btn btn-primary" (click)="addTodoItem(); newTodo.value=''">Toevoegen</button>
+        <button class="btn btn-primary" (click)="addTodoItem();">Toevoegen</button>
       </div>
     </div>
   </div>

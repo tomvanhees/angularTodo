@@ -12,13 +12,9 @@ import {DatabaseService} from './database.service';
 })
 export class TodoService {
   todoItems: TodoItem[] = [];
-  databaseService;
 
-  constructor(databaseService: DatabaseService) {
-    this.databaseService = databaseService;
+  constructor(private databaseService: DatabaseService) {
     this.init();
-
-    // this.init().subscribe(todoitems => this.todoItems = todoitems.map(item => new TodoItemModel().deserialize(item)));
   }
 
   init(): any {
@@ -27,20 +23,22 @@ export class TodoService {
     });
   }
 
-  addTodoItem(todoItem: TodoItem) {
-    this.databaseService.post(todoItem);
-    this.todoItems.push(todoItem);
-
-
+  addTodoItem(todoItem: TodoItem): void {
+    this.databaseService.post(todoItem).then(response => {
+      todoItem._id = response.id;
+      todoItem._rev = response.rev;
+      this.todoItems.push(todoItem);
+    }).catch(error => {
+      console.log(error);
+    });
   }
 
   deleteTodoItem(todoItem: TodoItem): void {
-    this.databaseService.delete(todoItem);
-
-    const index = this.todoItems.indexOf(todoItem);
-    this.todoItems.splice(index, 1);
-
-
+    this.databaseService.delete(todoItem).then(() => {
+      const index = this.todoItems.indexOf(todoItem);
+      this.todoItems.splice(index, 1);
+    }).catch(error => {
+      console.log(error);
+    });
   }
-
 }
